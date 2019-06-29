@@ -45,6 +45,8 @@ function createFormListener() {
         function errorCallback(response) {
             console.log(response);
         }
+
+        document.getElementById("new-message-form").reset();
     }
 }
 
