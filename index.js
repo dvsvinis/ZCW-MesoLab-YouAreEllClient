@@ -5,6 +5,7 @@ import MessageService from "./message-service.js";
 
 let userId = "DonnaTest";
 const messageService = new MessageService(userId);
+const form = document.getElementById("new-message-form");
 
 window.addEventListener("load", function () {
     document.getElementById("greeting").innerHTML = `Welcome ${userId}!`;
@@ -22,12 +23,11 @@ window.addEventListener("load", function () {
     }
 });
 
+form.addEventListener("click", createFormListener);
 
 function createFormListener() {
-    const form = document.getElementById("new-message-form");
 
     form.onsubmit = function (event) {
-        // stop the regular form submission
         event.preventDefault();
 
         const data = {
@@ -39,12 +39,10 @@ function createFormListener() {
             .then(successCallback, errorCallback);
 
         function successCallback(response) {
-            // This data comes from the resolve method
             addMessageToThread(response);
         }
 
         function errorCallback(response) {
-            // This data comes from the reject method
             console.log(response);
         }
     }
